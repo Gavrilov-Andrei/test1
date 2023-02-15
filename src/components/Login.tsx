@@ -1,5 +1,7 @@
 import React from "react"
 import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom"
+import { ADMIN_EMAIL, ADMIN_PASSWORD } from "../constanst/const"
 
 
 const Login: React.FC = () => { 
@@ -12,6 +14,9 @@ const Login: React.FC = () => {
   const [emailErrorMessage, setEmailErrorMessage] = useState('Емейл не может быть пустым')
   const [passwordError, setPasswordError] = useState('Пароль не может быть пустым')
   const [isFormValid, setIsFormValid] = useState(false)
+  const navigate = useNavigate()
+  const [isFormSubmitted, setFormSubmitted] = useState(false)
+
 
 
   useEffect(() => { 
@@ -48,6 +53,22 @@ useEffect(() => {
 
 },[emailErrorMessage, passwordError])
 
+  
+  useEffect(() => {
+
+    if(email === ADMIN_EMAIL && password === ADMIN_PASSWORD) { 
+       setFormSubmitted(true)
+    }
+    
+  },[email, password])
+
+
+  const todoPageHandler = () => {
+    if(isFormSubmitted) { 
+        navigate('AddTodo')
+    }
+  }
+ 
 
   const handleEmailChange  = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
@@ -98,6 +119,7 @@ useEffect(() => {
                 />
 
                 <button 
+                onClick={todoPageHandler}
                 disabled={isFormValid} 
                 type='submit'
                 >
