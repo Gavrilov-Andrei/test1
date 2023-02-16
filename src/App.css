@@ -1,6 +1,30 @@
+.App {
+    text-align: center;
+  }
+
 .Login {
-    background-color: rgb(127, 168, 255);
+    background-color: rgb(127, 202, 255);
     display: flex;
     flex-direction: column;
     width: 200px;
- }
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  input:checked + span {
+    text-decoration: line-through;
+  }
+  
+  span:last-child {
+    color: red;
+    cursor: pointer;
+  }
